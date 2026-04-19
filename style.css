@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Reset and Box-Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background gradient to soft pink / purple / pastel colors */
+body {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrolling, keep it single screen */
+    color: #4a4a4a;
+    position: relative;
+}
+
+/* Floating Hearts Background Container */
+#hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ignore clicks on background */
+    z-index: 1;
+}
+
+/* Base Heart Shape */
+.heart {
+    position: absolute;
+    bottom: -100px;
+    background-color: #ff4d6d;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    transform: rotate(-45deg);
+    animation: float 5s infinite ease-in;
+    opacity: 0.7;
+}
+
+/* Create the heart shape using pseudo elements */
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4d6d;
+    border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+/* Background Floater Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(-45deg) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(-45deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Main Modal / Card style */
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    max-width: 600px;
+    width: 95%; /* 95% of viewport width */
+    z-index: 2;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glowing romantic text */
+.glow-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #ff0844;
+    text-shadow: 0 0 10px rgba(255, 8, 68, 0.5), 0 0 20px rgba(255, 8, 68, 0.3);
+    margin-bottom: 0.5rem;
+}
+
+/* Subheading */
+.sub-heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff4b2b;
+    margin-bottom: 1.5rem;
+}
+
+/* Emotion Message Section */
+.message-section {
+    background: #fff0f3;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #ff4d6d;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Love Letter / Typist Section */
+.love-letter {
+    background: #fff;
+    border: 2px dashed #ffb3c6;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.love-letter h3 {
+    font-family: 'Dancing Script', cursive;
+    color: #c9184a;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+#typing-text {
+    font-style: italic;
+    color: #590d22;
+    font-weight: 500;
+}
+
+/* Blinking Cursor for Typing Animation */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: #590d22;
+    animation: blink 0.7s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Buttons Section setup using flexbox */
+.buttons-section {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+/* Common Button Styles */
+.btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-yes {
+    background: linear-gradient(45deg, #ff0844 0%, #ffb199 100%);
+    color: white;
+}
+
+/* Hover glow for YES button */
+.btn-yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 8, 68, 0.4);
+}
+
+.btn-no {
+    background: #e0e0e0;
+    color: #333;
+    z-index: 100;
+}
+
+.btn-no:hover {
+    background: #d4d4d4;
+}
+
+/* Celebration Screen Style */
+#celebration-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Different romantic gradient */
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#celebration-screen.show {
+    opacity: 1;
+}
+
+#celebration-screen h1 {
+    font-size: 4rem;
+    text-align: center;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Confetti styling for the celebration screen */
+.confetti {
+    position: absolute;
+    background-color: #f00;
+    animation: fall linear forwards;
+    top: -20px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+
+/* Explosion Hearts animation for 'Yes' click */
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(-45deg);
+        opacity: 1;
+    }
+    100% {
+        /* CSS uses custom variables --tx and --ty for random directions set in JS */
+        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(calc(-45deg + 180deg));
+        opacity: 0;
+    }
+}
+
+#confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 11;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .glow-text {
+        font-size: 2.5rem;
+    }
+    .sub-heading {
+        font-size: 1rem;
+    }
+    .buttons-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .message-section p {
+        font-size: 0.95rem;
+    }
+}
